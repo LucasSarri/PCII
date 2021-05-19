@@ -7,48 +7,39 @@
 	Data da última modificação: 11/05/2021
 */
 
-/* Como compilar: gcc caixa_input.c conio_v3.2.4.c -o caixa_input.exe -Wall -pedantic -Wextra*/
+/* Como compilar: gcc caixa_input.c conio_v3.2.4.c personalizacoes.c funcoesGerais.c -o caixa_input.exe -Wall -pedantic -Wextra*/
 
 #include <stdio.h> /* printf(), scanf()*/
 #include <string.h> /* strlen() */
-#include "conio_v3.2.4.h" /* textbackground(), window(), getch(), gotoxy(), constantes BLUE, BLACK */ 
-
+#include <locale.h> /* setlocale(), constante LC_ALL */
+#include "conio_v3.2.4.h" /* getch()*/ 
+#include "personalizacoes.h" /* mensagemInput(), posicaoJanela(), dimencionamentoJanela(), definicaoPlanoFundoMsg(), definicaoCorLetraMsg()*/
+#include "funcoesGerais.h" /* criarJanela() */
 
 int main (int argc, char *argv[])
 {
-	char mensagem [100];
+	char mensagem[100];
 	int linha, coluna;
 	int largura,altura;
+	int corFundo, corTexto;
 	
 	/* Artifício para tirar o warning do "-Wextra" causado pelos parâmetros da main */
 	argc = argc;
 	argv = argv;
 	
-	/* Recebendo a mensagem que será exibida na caixa de input*/
-	printf("Informe a mensagem para a caixa do input : ");
-	scanf("%s", mensagem);
+	/*Definindo a localidade do programa para poder interpretar a acentuação da lingua */
+	setlocale(LC_ALL, "Portuguese");
 	
-	/* Recebendo a linha e coluna para posicionar a janela */
-	printf("Informe a coluna que deseja posicionar a janela : ");
-	scanf("%d", linha);
-	printf("Informe a linha que deseja posicionar a janela : ");
-	scanf("%d", coluna);
+	/********************* Chamada das funções de Personalização ***********************************/
+	mensagemInput (mensagem);
+	posicaoJanela (&linha, &coluna);
+	dimencionamentoJanela(&largura, &altura);
+	definicaoPlanoFundoMsg(&corFundo);
+	definicaoCorLetraMsg(&corTexto);
 	
-	/* Recebendo as dimensões (Altura e largura) da janela */
-	printf("Informe a largura da janela : ");
-	scanf("%d", largura);
-	printf("Informe a altura da janela : ");
-	scanf("%d", altura);
-	
-	/*Criando a janela*/
-	textbackground(BLUE);
-	textcolor(BLACK);
-	window(coluna,linha,largura,altura);
-	gotoxy(1,1);
-	printf("%s ", mensagem);
+	/********************* Chamada da criação da janela ***********************************/
+	criarJanela (corFundo, corTexto, coluna, linha, largura, altura, mensagem);
 	getch();
-	
-	
 	
 	/* Retornando para o sistema operacional que sistema encerrou corretamente */
 	return 0;
