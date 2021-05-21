@@ -10,8 +10,8 @@
 /* Como compilar: gcc caixa_input.c conio_v3.2.4.c personalizacoes.c funcoesGerais.c -o caixa_input.exe -Wall -pedantic -Wextra*/
 
 #include <stdio.h> /* printf(), scanf()*/
-#include <string.h> /* strlen() */
 #include <locale.h> /* setlocale(), constante LC_ALL */
+#include <string.h> /* strlen() */
 #include "conio_v3.2.4.h" /* getch()*/ 
 #include "personalizacoes.h" /* mensagemInput(), posicaoJanela(), dimencionamentoJanela(), definicaoPlanoFundoMsg(), definicaoCorLetraMsg()*/
 #include "funcoesGerais.h" /* criarJanela() */
@@ -38,6 +38,8 @@ int main (int argc, char *argv[])
 	definicaoCorLetraMsg(&corTexto);
 	
 	/********************* Chamada da criação da janela ***********************************/
+	tipoDados (1);
+	
 	criarJanela (corFundo, corTexto, coluna, linha, largura, altura, mensagem);
 	getch();
 	
