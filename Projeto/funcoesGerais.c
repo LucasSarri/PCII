@@ -13,6 +13,22 @@ void mensagemInput (char *mensagem)
 	scanf("%s", mensagem);
 }
 
+char *preencheEspaco (int tam)
+{
+	/* Criando variável para receber o caractere _ que irá preencher o espaço vazio, para isso realizei a alocação dinâmica 
+	de acordo com o tam que será a diferença do tamanho da mensagem para o tamanho da janela*/
+	char *mensagem;
+	mensagem = malloc (tam * sizeof(char));
+	
+	int i = 0;
+	while (i < sizeof(mensagem))
+	{
+		mensagem[i] = '_'
+	}
+	
+	return mensagem;
+}
+
 /* Função que cria a janela com base nas informações recebidas de outros procedimentos*/
 void criarJanela (int corFundo, int corTexto, int coluna, int linha, int largura, int altura, char *mensagem)
 {
