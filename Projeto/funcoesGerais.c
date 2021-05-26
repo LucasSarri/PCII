@@ -1,5 +1,6 @@
 #include <stdio.h> /* printf(), scanf() */
 #include <locale.h> /* setlocale(), constante LC_ALL */
+#include <stdlib.h> /* malloc() */
 #include "conio_v3.2.4.h" /* textbackground(), window(), gotoxy(), constantes dentro de COLORS */ 
 
 /* Recebendo a mensagem que será exibida na caixa de input*/
@@ -18,10 +19,12 @@ char *preencheEspaco (int tam)
 	de acordo com o tam que será a diferença do tamanho da mensagem para o tamanho da janela*/
 	int alocacao = tam * sizeof(char);
 	char *mensagem;
+	int i;
+	
 	mensagem = malloc (alocacao);
 	
-	int i = 0;
-	while (i < alocacao)
+	printf("%d",alocacao);
+	for (i = 0; i < alocacao; i++)
 	{
 		mensagem[i] = '_';
 	}

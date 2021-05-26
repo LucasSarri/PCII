@@ -12,6 +12,7 @@
 #include <stdio.h> /* printf(), scanf() e sizeof()*/
 #include <locale.h> /* setlocale(), constante LC_ALL */
 #include <string.h> /* strlen() */
+#include <stdlib.h> /* malloc() */
 #include "conio_v3.2.4.h" /* getch()*/ 
 #include "personalizacoes.h" /* mensagemInput(), posicaoJanela(), dimencionamentoJanela(), definicaoPlanoFundoMsg(), definicaoCorLetraMsg()*/
 #include "funcoesGerais.h" /* criarJanela() */
@@ -44,7 +45,6 @@ int main (int argc, char *argv[])
 	
 	/********************* Preenchendo espaço vazio *************************************/
 	diferenca = strlen(mensagem) - largura;
-	preenchimento = malloc (diferenca * sizeof(char));
 	preenchimento = preencheEspaco (diferenca);
 	
 	definicaoPlanoFundoMsg(&corFundo);
@@ -57,7 +57,7 @@ int main (int argc, char *argv[])
 		e por fim a altura é a diferença divida pela largura, encontrando "quantas vezes a diferença cabe na largura"
 	*/
 	
-	criarJanela (corFundo, corTexto, strlen(mensagem)+1 , strlen(mensagem)/largura , diferenca, diferenca/largura, preenchimento);
+	criarJanela (corFundo, corTexto, strlen(mensagem)+1 , linha, diferenca, altura, preenchimento);
 	
 	getch();
 	
